@@ -4,6 +4,8 @@ This project is for me to learn more about microservices architecture using Gola
 
 ## Setup
 
+If you have new dependencies you imported for a particular service, you should do `go mod tidy` to add them to the **go.mod** and **go.sum** files.
+
 To generate protobuf files from a .proto file, follow these steps:
 
 1. Run `go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest` only if you haven't installed protoc-gen-go-grpc on your PC yet.
