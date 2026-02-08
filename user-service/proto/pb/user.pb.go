@@ -326,7 +326,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\"\xb6\x01\n" +
+	"user.proto\x12\x04user\"\xb6\x01\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -337,9 +337,10 @@ const file_user_proto_rawDesc = "" +
 	"\x0fdefault_address\x18\x06 \x01(\tR\x0edefaultAddress\x12\x16\n" +
 	"\x06rating\x18\a \x01(\x01R\x06rating\")\n" +
 	"\x0eGetUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\",\n" +
-	"\x0fGetUserResponse\x12\x19\n" +
-	"\x04user\x18\x01 \x01(\v2\x05.UserR\x04user\"\xaf\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"1\n" +
+	"\x0fGetUserResponse\x12\x1e\n" +
+	"\x04user\x18\x01 \x01(\v2\n" +
+	".user.UserR\x04user\"\xaf\x01\n" +
 	"\x11CreateUserRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x14\n" +
@@ -347,13 +348,14 @@ const file_user_proto_rawDesc = "" +
 	"\n" +
 	"avatar_url\x18\x04 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12'\n" +
 	"\x0fdefault_address\x18\x05 \x01(\tR\x0edefaultAddressB\r\n" +
-	"\v_avatar_url\"/\n" +
-	"\x12CreateUserResponse\x12\x19\n" +
-	"\x04user\x18\x01 \x01(\v2\x05.UserR\x04user2r\n" +
-	"\vUserService\x12,\n" +
-	"\aGetUser\x12\x0f.GetUserRequest\x1a\x10.GetUserResponse\x125\n" +
+	"\v_avatar_url\"4\n" +
+	"\x12CreateUserResponse\x12\x1e\n" +
+	"\x04user\x18\x01 \x01(\v2\n" +
+	".user.UserR\x04user2\x86\x01\n" +
+	"\vUserService\x126\n" +
+	"\aGetUser\x12\x14.user.GetUserRequest\x1a\x15.user.GetUserResponse\x12?\n" +
 	"\n" +
-	"CreateUser\x12\x12.CreateUserRequest\x1a\x13.CreateUserResponseB3Z1github.com/jasutiin/foover/services/user/proto/pbb\x06proto3"
+	"CreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponseB3Z1github.com/jasutiin/foover/services/user/proto/pbb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -369,19 +371,19 @@ func file_user_proto_rawDescGZIP() []byte {
 
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_proto_goTypes = []any{
-	(*User)(nil),               // 0: User
-	(*GetUserRequest)(nil),     // 1: GetUserRequest
-	(*GetUserResponse)(nil),    // 2: GetUserResponse
-	(*CreateUserRequest)(nil),  // 3: CreateUserRequest
-	(*CreateUserResponse)(nil), // 4: CreateUserResponse
+	(*User)(nil),               // 0: user.User
+	(*GetUserRequest)(nil),     // 1: user.GetUserRequest
+	(*GetUserResponse)(nil),    // 2: user.GetUserResponse
+	(*CreateUserRequest)(nil),  // 3: user.CreateUserRequest
+	(*CreateUserResponse)(nil), // 4: user.CreateUserResponse
 }
 var file_user_proto_depIdxs = []int32{
-	0, // 0: GetUserResponse.user:type_name -> User
-	0, // 1: CreateUserResponse.user:type_name -> User
-	1, // 2: UserService.GetUser:input_type -> GetUserRequest
-	3, // 3: UserService.CreateUser:input_type -> CreateUserRequest
-	2, // 4: UserService.GetUser:output_type -> GetUserResponse
-	4, // 5: UserService.CreateUser:output_type -> CreateUserResponse
+	0, // 0: user.GetUserResponse.user:type_name -> user.User
+	0, // 1: user.CreateUserResponse.user:type_name -> user.User
+	1, // 2: user.UserService.GetUser:input_type -> user.GetUserRequest
+	3, // 3: user.UserService.CreateUser:input_type -> user.CreateUserRequest
+	2, // 4: user.UserService.GetUser:output_type -> user.GetUserResponse
+	4, // 5: user.UserService.CreateUser:output_type -> user.CreateUserResponse
 	4, // [4:6] is the sub-list for method output_type
 	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

@@ -16,6 +16,13 @@ To generate protobuf files from a .proto file, follow these steps:
    - The `--go-grpc_out` flag specifies where protoc will generate the **\_grpc.pb.go** file for the service. In this case, it will be in the **pb/** directory we made in step 3.
    - The `--go_opt` and `--go-grpc_opt` flags make it so that it doesn't generate a bunch of nested directories inside the **pb/** directory based on the module name in the **go.mod** file.
 
+## Testing gRPC
+ Download grpcurl and add it to your PATH. After that, you can use this command to test out the method:
+
+ ```
+grpcurl -plaintext -d '{\"user_id\": \"1\"}' localhost:8080 user.UserService/GetUser
+ ```
+
 ## Protobufs
 
 ### <service>.pb.go
@@ -27,3 +34,5 @@ This is where all the Go structs are for our protobuf messages. It has basic ser
 This is where our gRPC service interface is. This is what our server must implement.
 
 Project file structure based off of this repo: https://github.com/rasadov/EcommerceAPI
+
+

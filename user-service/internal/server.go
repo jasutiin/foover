@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"context"
 	"fmt"
 	"net"
 
@@ -30,4 +31,15 @@ func ListenGRPC () error {
 	fmt.Println("registered server with grpcServer struct")
 
 	return server.Serve(lis)
+}
+
+func (s* grpcServer) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+	fmt.Printf("getting user with id %s", req.GetUserId())
+
+	return &pb.GetUserResponse{
+		User: &pb.User{
+			Id: req.GetUserId(),
+			Name: "justine",
+		},
+	}, nil
 }
