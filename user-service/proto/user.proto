@@ -1,12 +1,15 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
 option go_package = "github.com/jasutiin/foover/services/user/proto/pb";
 
 message User {
   string id = 1;
   string name = 2;
-  google.protobuf.Timestamp created_at = 3;
+  string email = 3;
+  string phone = 4;
+  string avatar_url = 5;
+  string default_address = 6;
+  double rating = 7;
 }
 
 message GetUserRequest {
@@ -19,6 +22,10 @@ message GetUserResponse {
 
 message CreateUserRequest {
   string name = 1;
+  string email = 2;
+  string phone = 3;
+  optional string avatar_url = 4;
+  string default_address = 5;
 }
 
 message CreateUserResponse {

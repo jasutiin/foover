@@ -9,7 +9,6 @@ package pb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -23,12 +22,16 @@ const (
 )
 
 type User struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name           string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Email          string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	Phone          string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
+	AvatarUrl      string                 `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
+	DefaultAddress string                 `protobuf:"bytes,6,opt,name=default_address,json=defaultAddress,proto3" json:"default_address,omitempty"`
+	Rating         float64                `protobuf:"fixed64,7,opt,name=rating,proto3" json:"rating,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *User) Reset() {
@@ -75,11 +78,39 @@ func (x *User) GetName() string {
 	return ""
 }
 
-func (x *User) GetCreatedAt() *timestamppb.Timestamp {
+func (x *User) GetEmail() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.Email
 	}
-	return nil
+	return ""
+}
+
+func (x *User) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *User) GetAvatarUrl() string {
+	if x != nil {
+		return x.AvatarUrl
+	}
+	return ""
+}
+
+func (x *User) GetDefaultAddress() string {
+	if x != nil {
+		return x.DefaultAddress
+	}
+	return ""
+}
+
+func (x *User) GetRating() float64 {
+	if x != nil {
+		return x.Rating
+	}
+	return 0
 }
 
 type GetUserRequest struct {
@@ -171,10 +202,14 @@ func (x *GetUserResponse) GetUser() *User {
 }
 
 type CreateUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Name           string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Email          string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	Phone          string                 `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
+	AvatarUrl      *string                `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
+	DefaultAddress string                 `protobuf:"bytes,5,opt,name=default_address,json=defaultAddress,proto3" json:"default_address,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *CreateUserRequest) Reset() {
@@ -210,6 +245,34 @@ func (*CreateUserRequest) Descriptor() ([]byte, []int) {
 func (x *CreateUserRequest) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateUserRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *CreateUserRequest) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *CreateUserRequest) GetAvatarUrl() string {
+	if x != nil && x.AvatarUrl != nil {
+		return *x.AvatarUrl
+	}
+	return ""
+}
+
+func (x *CreateUserRequest) GetDefaultAddress() string {
+	if x != nil {
+		return x.DefaultAddress
 	}
 	return ""
 }
@@ -263,18 +326,28 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"e\n" +
+	"user.proto\"\xb6\x01\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x129\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\x12\x14\n" +
+	"\x05phone\x18\x04 \x01(\tR\x05phone\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\")\n" +
+	"avatar_url\x18\x05 \x01(\tR\tavatarUrl\x12'\n" +
+	"\x0fdefault_address\x18\x06 \x01(\tR\x0edefaultAddress\x12\x16\n" +
+	"\x06rating\x18\a \x01(\x01R\x06rating\")\n" +
 	"\x0eGetUserRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\",\n" +
 	"\x0fGetUserResponse\x12\x19\n" +
-	"\x04user\x18\x01 \x01(\v2\x05.UserR\x04user\"'\n" +
+	"\x04user\x18\x01 \x01(\v2\x05.UserR\x04user\"\xaf\x01\n" +
 	"\x11CreateUserRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"/\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\x12\x14\n" +
+	"\x05phone\x18\x03 \x01(\tR\x05phone\x12\"\n" +
+	"\n" +
+	"avatar_url\x18\x04 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12'\n" +
+	"\x0fdefault_address\x18\x05 \x01(\tR\x0edefaultAddressB\r\n" +
+	"\v_avatar_url\"/\n" +
 	"\x12CreateUserResponse\x12\x19\n" +
 	"\x04user\x18\x01 \x01(\v2\x05.UserR\x04user2r\n" +
 	"\vUserService\x12,\n" +
@@ -296,26 +369,24 @@ func file_user_proto_rawDescGZIP() []byte {
 
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_proto_goTypes = []any{
-	(*User)(nil),                  // 0: User
-	(*GetUserRequest)(nil),        // 1: GetUserRequest
-	(*GetUserResponse)(nil),       // 2: GetUserResponse
-	(*CreateUserRequest)(nil),     // 3: CreateUserRequest
-	(*CreateUserResponse)(nil),    // 4: CreateUserResponse
-	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
+	(*User)(nil),               // 0: User
+	(*GetUserRequest)(nil),     // 1: GetUserRequest
+	(*GetUserResponse)(nil),    // 2: GetUserResponse
+	(*CreateUserRequest)(nil),  // 3: CreateUserRequest
+	(*CreateUserResponse)(nil), // 4: CreateUserResponse
 }
 var file_user_proto_depIdxs = []int32{
-	5, // 0: User.created_at:type_name -> google.protobuf.Timestamp
-	0, // 1: GetUserResponse.user:type_name -> User
-	0, // 2: CreateUserResponse.user:type_name -> User
-	1, // 3: UserService.GetUser:input_type -> GetUserRequest
-	3, // 4: UserService.CreateUser:input_type -> CreateUserRequest
-	2, // 5: UserService.GetUser:output_type -> GetUserResponse
-	4, // 6: UserService.CreateUser:output_type -> CreateUserResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0, // 0: GetUserResponse.user:type_name -> User
+	0, // 1: CreateUserResponse.user:type_name -> User
+	1, // 2: UserService.GetUser:input_type -> GetUserRequest
+	3, // 3: UserService.CreateUser:input_type -> CreateUserRequest
+	2, // 4: UserService.GetUser:output_type -> GetUserResponse
+	4, // 5: UserService.CreateUser:output_type -> CreateUserResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
@@ -323,6 +394,7 @@ func file_user_proto_init() {
 	if File_user_proto != nil {
 		return
 	}
+	file_user_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
